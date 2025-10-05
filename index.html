@@ -1,271 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
-  <meta name="description"
-        content="BLAZER: Bootstrapping LLM-based Manipulation Agents with Zero-Shot Data Generation">
-  <meta name="keywords" content="Robotic Manipulation, Language Models, Data Generation">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BLAZER</title>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <meta name="description" content="BLAZER: Bootstrapping LLM-based Manipulation Agents with Zero-Shot Data Generation">
+    <meta name="keywords" content="Robotic Manipulation, Language Models, Data Generation">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BLAZER</title>
 
-  <!-- Optional: your CSS -->
-  <link rel="stylesheet" href="style.css">
+    <!-- MathJax -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FV4ZJ9PVSV"></script>  
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
 
-    gtag('config', 'G-FV4ZJ9PVSV');
-  </script>
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-  rel="stylesheet">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FV4ZJ9PVSV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FV4ZJ9PVSV');
+    </script>
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <!-- <script src="./static/js/index.js"></script> -->
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <!-- <script src="./static/js/index.js"></script> -->
 </head>
+
 <body>
 
-<section class="hero">
-<div class="hero-body">
-    <div class="container is-fullhd">
-    <div class="columns is-centered">
-        <div class="column has-text-centered">
-        <h1 class="title is-1 publication-title">BLAZER: Bootstrapping LLM-based Manipulation Agents <br> with Zero-Shot Data Generation</h1>
-        <!-- <h3 class="title is-4 conference-authors"><a target="_blank" href="https://www.corl2023.org/">CoRL 2023 (Oral)</a></h3> -->
-        <div class="is-size-8 publication-authors">
-            <span class="author-block">
-            <a target="_blank" href="https://rocktimjyotidas.github.io/">Rocktim Jyoti Das*</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-            <a target="_blank" href="https://scholar.google.com/citations?hl=en&user=DayMIBIAAAAJ">Harsh Singh*</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a target="_blank" href="https://scholar.google.com/citations?user=qzOCh2wAAAAJ&hl=en">
-                Diana Turmakhan<sup>†</sup>
-              </a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a target="_blank" href="https://scholar.google.com/citations?user=dU8aFpoAAAAJ&hl=en">
-                Muhammad Abdullah Sohail<sup>†</sup>
-              </a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-            <a target="_blank" href="https://mingfei.info/">Mingfei Han</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-            <a target="_blank" href="https://mbzuai.ac.ae/study/faculty/preslav-nakov/">Preslav Nakov</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-            <a target="_blank" href="https://fabvio.github.io/">Fabio Pizzati</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-            <a target="_blank" href="https://www.di.ens.fr/~laptev/">Ivan Laptev</a><sup>1</sup>,
-            </span>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-fullhd">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">
+                            BLAZER: Bootstrapping LLM-based Manipulation Agents <br>
+                            with Zero-Shot Data Generation
+                        </h1>
+
+                        <div class="is-size-8 publication-authors">
+                            <span class="author-block">
+                                <a target="_blank" href="https://rocktimjyotidas.github.io/">Rocktim Jyoti Das*</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a target="_blank" href="https://scholar.google.com/citations?hl=en&user=DayMIBIAAAAJ">Harsh Singh*</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a target="_blank" href="https://scholar.google.com/citations?user=qzOCh2wAAAAJ&hl=en">Diana Turmakhan<sup>†</sup></a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a target="_blank" href="https://scholar.google.com/citations?user=dU8aFpoAAAAJ&hl=en">Muhammad Abdullah Sohail<sup>†</sup></a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a target="_blank" href="https://mingfei.info/">Mingfei Han</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a target="_blank" href="https://mbzuai.ac.ae/study/faculty/preslav-nakov/">Preslav Nakov</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a target="_blank" href="https://fabvio.github.io/">Fabio Pizzati</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a target="_blank" href="https://www.di.ens.fr/~laptev/">Ivan Laptev</a><sup>1</sup>,
+                            </span>
+                        </div>
+
+                        <div class="is-size-8 publication-authors">
+                            <span class="author-block">
+                                <sup>1</sup>Mohamed bin Zayed University of Artificial Intelligence, Abu Dhabi
+                            </span>
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <span class="link-block">
+                                    <a target="_blank" href="https://malmm1.github.io/assets/IROS_2025_malmm_v8.pdf"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+
+                                <span class="link-block">
+                                    <a target="_blank" href="https://github.com/malmm1/prompts"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file"></i>
+                                        </span>
+                                        <span>Prompts</span>
+                                    </a>
+                                </span>
+
+                                <span class="link-block">
+                                    <a target="_blank" href="https://github.com/malmm1/MALMM.git"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                        <span>Code (coming soon)</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="is-size-8 publication-authors">
-            <span class="author-block"><sup>1</sup>Mohamed bin Zayed University of Artificial Intelligence, Abu Dhabi</span>
+    <!-- YouTube Teaser Section -->
+    <section class="hero teaser">
+        <div class="container is-fullhd">
+            <div class="hero-body">
+                <div class="container">
+                    <div class="columns is-vcentered is-centered">
+                        <iframe width="960" height="540" src="https://www.youtube.com/embed/EpcwqMUtjXE?si=OeLiIe_UZcj2m8Bt"
+                            title="BLAZER final" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <h2 class="subtitle has-text-centered"></h2>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-
-              <span class="link-block">
-                <a target="_blank" href="https://malmm1.github.io/assets/IROS_2025_malmm_v8.pdf"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              
-              <span class="link-block">
-                <a target="_blank" href="https://github.com/malmm1/prompts"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file"></i>
-                  </span>
-                  <span>Prompts</span>
-                </a>
-              </span>
-
-              <span class="link-block">
-                <a target="_blank" href="https://github.com/malmm1/MALMM.git"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code (coming soon)</span>
-                  </a>
-              </span>
+    <!-- Abstract Section -->
+    <section class="section">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Scaling data and models has played a pivotal role in the remarkable progress of computer
+                            vision and language. Inspired by these domains, recent efforts in robotics have similarly
+                            focused on scaling both data and model size to develop more generalizable and robust
+                            policies. However, unlike vision and language, robotics lacks access to internet-scale
+                            demonstrations across diverse robotic tasks and environments. As a result, the scale of
+                            existing datasets typically suffers from the need for manual data collection and
+                            curation. To address this problem, here we propose BLAZER, a framework that learns
+                            manipulation policies from automatically generated training data. We build on the
+                            zero-shot capabilities of LLM planners and automatically generate demonstrations for
+                            diverse manipulation tasks in simulation. Successful examples are then used to finetune
+                            an LLM and to improve its planning capabilities without human supervision. Notably, while
+                            BLAZER training requires access to the simulator's state, we demonstrate direct transfer
+                            of acquired skills to sensor-based manipulation. Through extensive experiments, we show
+                            BLAZER to significantly improve zero-shot manipulation in both simulated and real
+                            environments. Moreover, BLAZER improves on tasks outside of its training pool and enables
+                            downscaling of LLM models. Our code and data will be made publicly available.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-    </div>
-    </div>
-</div>
-</section>
+    <!-- BLAZER Overview Section -->
+    <section class="section">
+        <div class="container is-max-widescreen">
+            <div class="rows">
+                <div class="rows is-centered">
+                    <div class="row is-full-width">
+                        <h2 class="title is-3"><span class="dperact">BLAZER</span></h2>
 
-<section class="hero teaser">
-    <div class="container is-fullhd">
-      <div class="hero-body">
+                        <div class="content has-text-centered">
+                            <img src="media/figures/Pipeline.png" class="interpolation-image" style="width: 75%; height: auto;" />
+                        </div>
+
+                        <p class="content has-text-justified">
+                            <strong>Overview of BLAZER.</strong> Given a set of manipulation tasks
+                            <span class="math">\( \tau \in \mathcal{T} \)</span>, we use an LLM to automatically generate
+                            executable commands <span class="math">\( \mathcal{C}_\tau \)</span> for solving
+                            <span class="math">\( \tau \)</span>. The resulting solutions are automatically verified
+                            by executing <span class="math">\( \mathcal{C}_\tau \)</span> in a simulator and successful
+                            solutions are added to the task database <span class="math">\( \mathcal{D}_{\tau} \)</span>.
+                            Task databases for all training tasks <span class="math">\( \mathcal{T} \)</span> are merged
+                            into <span class="math">\( \mathcal{D}_{\text{BLAZER}} \)</span> and are used for supervised
+                            fine-tuning of the BLAZER LLM.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="section">
+        <div class="container is-max-widescreen">
+            <div class="rows">
+                <div class="rows is-centered">
+                    <div class="row is-full-width">
+                        <h2 class="title is-3"><span class="dperact">Results</span></h2>
+
+                        <img src="media/figures/results.png" class="interpolation-image" style="width: 100%; height: auto;" />
+
+                        <p class="content has-text-justified">
+                            <strong>Comparison with zero-shot baselines.</strong> 
+                            We report the task success rate (%) for different methods applied to the nine manipulation tasks from RLBench. 
+                            With a small LLaMA-8B model fine-tuned with BLAZER, we are able to achieve the best performance. 
+                            Note how LLaMA-8B with <span class="math">\( \text{BLAZER} \)</span> considerably outperforms LLaMA-70B, which was used as 
+                            <span class="math">\( \text{LLM}_\text{boot} \)</span>. 
+                            This implies that <span class="math">\( \text{BLAZER} \)</span> can yield LLMs that outperform their teacher models on manipulation tasks. 
+                            The table highlights the best-performing method for each task in <strong>bold</strong> and the second-best method as <u>underlined</u>.
+                        </p>
+
+                        <div class="content has-text-centered">
+                            <img src="media/figures/real_world_results.png" class="interpolation-image" style="width: 100%; height: auto;" />
+                        </div>
+
+                        <p class="content has-text-justified">
+                            <strong>Real world results.</strong> 
+                            We compare LLaMA-8B with <span class="math">\( \text{BLAZER} \)</span> against LLaMA-70B on real-world tasks depicted. 
+                            From quantitative results in the Table, we outperform the baseline, both on In-distribution tasks (similar to
+                            <span class="math">\( \mathcal{T} \)</span>) and Out-of-distribution tasks, showcasing the generalization capability of
+                            <span class="math">\(\text{BLAZER}\)</span>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
-          <div class="columns is-vcentered  is-centered">
-            <iframe width="960" height="540" src="https://www.youtube.com/embed/EpcwqMUtjXE?si=OeLiIe_UZcj2m8Bt" title="BLAZER final" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <!-- </br> -->
-          </div>
-          <!-- <br> -->
-          <h2 class="subtitle has-text-centered">
-          <!-- <span class="dperact">MALMM</span> utilizes <b>collaborative intelligence </b> of multiple Large Language Model based Agents<br>to solve complex manipulation tasks<b> in zero-shot manner</b>. -->
-          </h2>
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="content has-text-centered">
+                        <p>
+                            Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a>
+                            and <a href="https://peract.github.io/">PerAct</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </footer>
 
-  <section class="section">
-    <div class="container is-max-desktop">
-      <!-- Abstract. -->
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Abstract</h2>
-          <div class="content has-text-justified">
-            <p>
-              Scaling data and models has played a pivotal role in the remarkable progress of computer vision and language. Inspired by these domains, recent efforts in robotics have similarly focused on scaling both data and model size to develop more generalizable and robust policies. However, unlike vision and language, robotics lacks access to internet-scale demonstrations across diverse robotic tasks and environments.  As a result, the scale of existing datasets typically suffers from the need for manual data collection and curation. To address this problem, here we propose BLAZER, a framework that learns manipulation policies from automatically generated training data. We build on the zero-shot capabilities of LLM planners and automatically generate demonstrations for diverse manipulation tasks in simulation. Successful examples are then used to finetune an LLM and to improve its planning capabilities without human supervision. Notably, while BLAZER training requires access to the simulator's state, we demonstrate direct transfer of acquired skills to sensor-based manipulation. Through extensive experiments, we show BLAZER to significantly improve zero-shot manipulation in both simulated and real environments. Moreover, BLAZER improves on tasks outside of its training pool and enables downscaling of LLM models. Our code and data will be made publicly available.   </p>
-          </div>
-        </div>
-      </div>
-      <!--/ Abstract. -->
-  
-    </div>
-  
-    <!-- Paper video. -->
-  
-  </section>
-
-
-  <section class="section">
-    <div class="container is-max-widescreen">
-  
-      <div class="rows">
-  
-  
-      <!-- Animation. -->
-      <div class="rows is-centered ">
-        <div class="row is-full-width">
-          <h2 class="title is-3"><span class="dperact">BLAZER</span></h2>
-  
-          <!-- Interpolating. -->
-          <div class="content has-text-justified">
-          <!-- <br> -->
-          </div>
-          <!-- <img src="media/figures/Pipeline.png" class="interpolation-image" /> -->
-
-          <div class="content has-text-centered">
-            <img src="media/figures/Pipeline.png" class="interpolation-image" style="width: 75%; height: auto;" />
-          </div>
-          </br>
-          </br>
-            <p class="content has-text-justified">
-            <strong>Overview of BLAZER.</strong> Given a set of manipulation tasks <span class="math">\( \tau \in \mathcal{T} \)</span>, we use an LLM to automatically generate executable commands <span class="math">\( \mathcal{C}_\tau \)</span> for solving <span class="math">\( \tau \)</span>. The resulting solutions are automatically verified by executing <span class="math">\( \mathcal{C}_\tau \)</span> in a simulator and successful solutions are added to the task database <span class="math">\( \mathcal{D}_{\tau} \)</span>. Task databases for all training tasks <span class="math">\( \mathcal{T} \)</span> are merged into <span class="math">\( \mathcal{D}_{\text{BLAZER}} \)</span> and are used for supervised fine-tuning of the BLAZER LLM.
-
-           </p>
-        </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container is-max-widescreen">
-  
-      <div class="rows">
-  
-  
-      <!-- Animation. -->
-      <div class="rows is-centered ">
-        <div class="row is-full-width">
-          <h2 class="title is-3"><span class="dperact">Results</span></h2>
-  
-          <!-- Interpolating. -->
-          <div class="content has-text-justified">
-          <!-- <br> -->
-          </div>
-          <img src="media/figures/results.png" class="interpolation-image" style="width: 100%; height: auto;" />
-          </br>
-          </br>
-            <p class="content has-text-justified">
-            <strong>Comparison with zero-shot baselines.</strong> 
-            We report the task success rate (%) for different methods applied to the nine manipulation tasks from RLBench</a>. 
-            With a small LLaMA-8B model fine-tuned with BLAZER, we are able to achieve the best performance. 
-            Note how LLaMA-8B with <span class="math">\( \text{BLAZER} \)</span> considerably outperforms LLaMA-70B, which was used as 
-            <span class="math">\( \text{LLM}_\text{boot} \)</span>. 
-            This implies that <span class="math">\( \text{BLAZER} \)</span> can yield LLMs that outperform their teacher models on manipulation tasks. 
-            The table highlights the best-performing method for each task in <strong>bold</strong> and the second-best method as <u>underlined</u>.
-            
-
-           </p>
-
-           <div class="content has-text-centered">
-            <img src="media/figures/real_world_results.png" class="interpolation-image" style="width: 100%; height: auto;" />
-          </div>
-     
-          <p class="content has-text-justified">
-          <strong>Real world results.</strong> 
-          We compare LLaMA-8B with <span class="math">\( \text{BLAZER} \)</span> against LLaMA-70B on real-world tasks depicted. 
-          From quantitative results in the Table, we outperform the baseline, both on In-distribution tasks (similar to <span class="math">\( \mathcal{T} \)</span>) and Out-of-distribution tasks, showcasing the generalization capability of <span class="math">\(\text{BLAZER}\)</span>.
-          
-
-          </p>
-          </div>
-    </div>
-  </section>
-
-<footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column">
-        <div class="content has-text-centered">
-          <p>
-            Website template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a> and <a href="https://peract.github.io/">PerAct</a>. 
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-
-
-    <!-- <div class="container">
-        <div class="controls">
-            <label for="video-selection">Select Video:</label>
-            <select id="video-selection" onchange="updateVideo()">
-                <option value="videos/groceries_1.mp4">Put the coffee in the cupboard. </option>
-                <option value="videos/ring_2.mp4">Put the ring in spoke 2. </option>
-                <option value="videos/stack_blocks_1.mp4">Stack 3 blocks together. </option>
-                <option value="videos/wine_1.mp4">Stack the wine block to the left of the rack.</option>
-            </select>
-        </div>
-        <div class="video-container">
-            <video id="video-player" width="600" controls>
-                <source id="video-source" src="videos/groceries_1.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </div>
-    <script src="script.js"></script> -->
 </body>
+
 </html>
