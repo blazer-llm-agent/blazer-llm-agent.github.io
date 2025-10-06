@@ -140,7 +140,6 @@ body {
   margin: 0;
 }
 
-/* Force the carousel to adopt video height dynamically */
 .results-carousel .item video {
   width: 90%;
   height: auto;
