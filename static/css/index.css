@@ -140,6 +140,18 @@ body {
   margin: 0;
 }
 
+/* Force the carousel to adopt video height dynamically */
+.results-carousel .item video {
+  width: 90%;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+}
+
+
+
 .interpolation-panel {
   background: #f5f5f5;
   border-radius: 10px;
