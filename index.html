@@ -35,7 +35,101 @@
     <script defer src="./static/js/fontawesome.all.min.js"></script>
     <script src="./static/js/bulma-carousel.min.js"></script>
     <script src="./static/js/bulma-slider.min.js"></script>
-    <!-- <script src="./static/js/index.js"></script> -->
+
+    <style>
+        /* --- Carousel / teaser styles (updated for 1080x1350 videos) --- */
+        .video-carousel {
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            margin: 1.25rem auto;
+            overflow: hidden;
+            padding: 1rem 0 0.5rem;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.55s cubic-bezier(.2, .9, .2, 1);
+            will-change: transform;
+        }
+
+        .carousel-page {
+            flex: 0 0 100%;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            box-sizing: border-box;
+            padding: 0 0.5rem;
+            align-items: center;
+        }
+
+        .carousel-page video {
+            aspect-ratio: 1080 / 1350; /* preserve portrait ratio */
+            width: 48%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+            background: #000;
+            display: block;
+        }
+
+        @media (max-width: 900px) {
+            .carousel-page {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .carousel-page video {
+                width: 96%;
+            }
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(0,0,0,0.45);
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .carousel-arrow:hover { background: rgba(0,0,0,0.65); }
+        .carousel-arrow.left { left: 10px; }
+        .carousel-arrow.right { right: 10px; }
+
+        .carousel-dots {
+            text-align: center;
+            margin-top: 0.85rem;
+            user-select: none;
+        }
+
+        .carousel-dots .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 0 6px;
+            border-radius: 50%;
+            background: #bbb;
+            cursor: pointer;
+            transition: background 0.25s ease;
+            vertical-align: middle;
+            border: none;
+        }
+
+        .carousel-dots .dot.active { background: #222; }
+
+        .teaser-subtitle { margin-top: 0.75rem; font-size: 0.95rem; color: #444; text-align: center; }
+    </style>
 </head>
 
 <body>
@@ -123,18 +217,55 @@
         </div>
     </section>
 
-    <!-- YouTube Teaser Section -->
+    <!-- Teaser Section — Four Local Videos as Carousel (two at a time) -->
     <section class="hero teaser">
         <div class="container is-fullhd">
             <div class="hero-body">
                 <div class="container">
                     <div class="columns is-vcentered is-centered">
-                        <iframe width="960" height="540" src="https://www.youtube.com/embed/EpcwqMUtjXE?si=OeLiIe_UZcj2m8Bt"
-                            title="BLAZER final" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <div class="column is-three-quarters">
+
+                            <div class="video-carousel" id="videoCarousel" aria-roledescription="carousel" aria-label="Teaser videos">
+                                <div class="carousel-track" id="carouselTrack" role="group" aria-live="polite">
+                                    <!-- Page 0: videos 1 & 2 -->
+                                    <div class="carousel-page" data-page="0">
+                                        <video autoplay muted loop playsinline preload="metadata" aria-label="Tic-tac-toe example">
+                                            <source src="media/videos/tic-tac-toe.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+
+                                        <video autoplay muted loop playsinline preload="metadata" aria-label="Count animals example">
+                                            <source src="media/videos/count_animals.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+
+                                    <!-- Page 1: videos 3 & 4 -->
+                                    <div class="carousel-page" data-page="1">
+                                        <video autoplay muted loop playsinline preload="metadata" aria-label="Complete eq example">
+                                            <source src="media/videos/complete_eq.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+
+                                        <video autoplay muted loop playsinline preload="metadata" aria-label="Win race example">
+                                            <source src="media/videos/win_race.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                </div>
+
+                                <button class="carousel-arrow left" id="carouselPrev" aria-label="Previous pair">&lsaquo;</button>
+                                <button class="carousel-arrow right" id="carouselNext" aria-label="Next pair">&rsaquo;</button>
+
+                                <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Carousel pages">
+                                    <button class="dot active" role="tab" aria-selected="true" tabindex="0" data-index="0"></button>
+                                    <button class="dot" role="tab" aria-selected="false" tabindex="0" data-index="1"></button>
+                                </div>
+                            </div>
+
+                            <div class="teaser-subtitle">Use the arrows or dots to switch pairs (two videos shown at a time).</div>
+                        </div>
                     </div>
-                    <h2 class="subtitle has-text-centered"></h2>
                 </div>
             </div>
         </div>
@@ -180,7 +311,10 @@
                         <h2 class="title is-3"><span class="dperact">BLAZER</span></h2>
 
                         <div class="content has-text-centered">
-                            <img src="media/figures/Pipeline.png" class="interpolation-image" style="width: 75%; height: auto;" />
+                            <iframe width="960" height="540" src="https://www.youtube.com/embed/EpcwqMUtjXE?si=OeLiIe_UZcj2m8Bt&autoplay=1&mute=1&loop=1"
+                                title="BLAZER final" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
 
                         <p class="content has-text-justified">
@@ -253,6 +387,48 @@
         </div>
     </footer>
 
-</body>
+    <script>
+        (function () {
+            const carousel = document.getElementById('videoCarousel');
+            const track = document.getElementById('carouselTrack');
+            const pages = Array.from(track.children);
+            const prevBtn = document.getElementById('carouselPrev');
+            const nextBtn = document.getElementById('carouselNext');
+            const dots = Array.from(document.querySelectorAll('#carouselDots .dot'));
+            let currentIndex = 0;
 
+            function updateCarousel() {
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                    dot.setAttribute('aria-selected', i === currentIndex);
+                });
+            }
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + pages.length) % pages.length;
+                updateCarousel();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % pages.length;
+                updateCarousel();
+            });
+
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    currentIndex = i;
+                    updateCarousel();
+                });
+            });
+
+            // Autoplay videos on page load
+            pages.forEach(page => {
+                Array.from(page.querySelectorAll('video')).forEach(v => v.play());
+            });
+
+        })();
+    </script>
+
+</body>
 </html>
