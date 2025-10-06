@@ -64,9 +64,10 @@
         }
 
         .carousel-page video {
-            aspect-ratio: 1080 / 1350; /* preserve portrait ratio */
-            width: 48%;
-            height: auto;
+            aspect-ratio: 1080 / 1350; /* maintain original frame */
+            width: 30%;                 /* smaller width to shrink video */
+            max-width: 360px;           /* absolute cap for very wide screens */
+            height: auto;               /* automatically adjust height */
             border-radius: 12px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.12);
             background: #000;
@@ -262,8 +263,6 @@
                                     <button class="dot" role="tab" aria-selected="false" tabindex="0" data-index="1"></button>
                                 </div>
                             </div>
-
-                            <div class="teaser-subtitle">Use the arrows or dots to switch pairs (two videos shown at a time).</div>
                         </div>
                     </div>
                 </div>
@@ -429,6 +428,25 @@
 
         })();
     </script>
+
+    <!-- ADD THIS FIX BELOW -->
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const videos = document.querySelectorAll('.carousel-page video');
+        videos.forEach(video => {
+            video.muted = true;       // ensure muted
+            video.playsInline = true; // for iOS
+            video.autoplay = true;
+            video.loop = true;
+            video.preload = 'metadata';
+
+            video.play().catch(err => {
+                console.warn("Video autoplay blocked or not ready yet:", err);
+            });
+        });
+    });
+    </script>
+
 
 </body>
 </html>
