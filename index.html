@@ -13,6 +13,13 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-FV4ZJ9PVSV');
+  </script>
     <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
     <link rel="stylesheet" href="./static/css/bulma.min.css">
     <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
@@ -35,106 +42,10 @@
     <script defer src="./static/js/fontawesome.all.min.js"></script>
     <script src="./static/js/bulma-carousel.min.js"></script>
     <script src="./static/js/bulma-slider.min.js"></script>
-
-    <style>
-        /* --- Carousel / teaser styles (updated for 1080x1350 videos) --- */
-        .video-carousel {
-            position: relative;
-            width: 100%;
-            max-width: 1400px;
-            margin: 1.25rem auto;
-            overflow: hidden;
-            padding: 1rem 0 0.5rem;
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.55s cubic-bezier(.2, .9, .2, 1);
-            will-change: transform;
-        }
-
-        .carousel-page {
-            flex: 0 0 100%;
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            box-sizing: border-box;
-            padding: 0 0.5rem;
-            align-items: center;
-        }
-
-        .carousel-page video {
-            aspect-ratio: 1080 / 1350; /* maintain original frame */
-            width: 30%;                 /* smaller width to shrink video */
-            max-width: 360px;           /* absolute cap for very wide screens */
-            height: auto;               /* automatically adjust height */
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-            background: #000;
-            display: block;
-        }
-
-        @media (max-width: 900px) {
-            .carousel-page {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .carousel-page video {
-                width: 96%;
-            }
-        }
-
-        .carousel-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            border: none;
-            background: rgba(0,0,0,0.45);
-            color: #fff;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 20;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s ease;
-        }
-
-        .carousel-arrow:hover { background: rgba(0,0,0,0.65); }
-        .carousel-arrow.left { left: 10px; }
-        .carousel-arrow.right { right: 10px; }
-
-        .carousel-dots {
-            text-align: center;
-            margin-top: 0.85rem;
-            user-select: none;
-        }
-
-        .carousel-dots .dot {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            margin: 0 6px;
-            border-radius: 50%;
-            background: #bbb;
-            cursor: pointer;
-            transition: background 0.25s ease;
-            vertical-align: middle;
-            border: none;
-        }
-
-        .carousel-dots .dot.active { background: #222; }
-
-        .teaser-subtitle { margin-top: 0.75rem; font-size: 0.95rem; color: #444; text-align: center; }
-    </style>
+    <script src="./static/js/index.js"></script>
 </head>
 
 <body>
-
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-body">
@@ -219,55 +130,38 @@
     </section>
 
     <!-- Teaser Section — Four Local Videos as Carousel (two at a time) -->
-    <section class="hero teaser">
-        <div class="container is-fullhd">
-            <div class="hero-body">
-                <div class="container">
-                    <div class="columns is-vcentered is-centered">
-                        <div class="column is-three-quarters">
-
-                            <div class="video-carousel" id="videoCarousel" aria-roledescription="carousel" aria-label="Teaser videos">
-                                <div class="carousel-track" id="carouselTrack" role="group" aria-live="polite">
-                                    <!-- Page 0: videos 1 & 2 -->
-                                    <div class="carousel-page" data-page="0">
-                                        <video autoplay muted loop playsinline preload="metadata" aria-label="Tic-tac-toe example">
-                                            <source src="media/videos/tic-tac-toe.mp4" type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>
-
-                                        <video autoplay muted loop playsinline preload="metadata" aria-label="Count animals example">
-                                            <source src="media/videos/count_animals.mp4" type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>
-                                    </div>
-
-                                    <!-- Page 1: videos 3 & 4 -->
-                                    <div class="carousel-page" data-page="1">
-                                        <video autoplay muted loop playsinline preload="metadata" aria-label="Complete eq example">
-                                            <source src="media/videos/complete_eq.mp4" type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>
-
-                                        <video autoplay muted loop playsinline preload="metadata" aria-label="Win race example">
-                                            <source src="media/videos/win_race.mp4" type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>
-                                    </div>
-                                </div>
-
-                                <button class="carousel-arrow left" id="carouselPrev" aria-label="Previous pair">&lsaquo;</button>
-                                <button class="carousel-arrow right" id="carouselNext" aria-label="Next pair">&rsaquo;</button>
-
-                                <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Carousel pages">
-                                    <button class="dot active" role="tab" aria-selected="true" tabindex="0" data-index="0"></button>
-                                    <button class="dot" role="tab" aria-selected="false" tabindex="0" data-index="1"></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <section class="hero is-light is-small">
+    <div class="hero-body">
+        <div class="container">
+        <div id="results-carousel" class="carousel results-carousel">
+            <div class="item item-steve">
+            <video poster="" id="steve" autoplay muted loop height="100%">
+                <source src="media/videos/tic-tac-toe.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
+            <div class="item item-fullbody">
+            <video poster="" id="fullbody" autoplay muted loop height="100%">
+                <source src="media/videos/complete_eq.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
+            <div class="item item-shiba">
+            <video poster="" id="shiba" autoplay muted loop height="100%">
+                <source src="media/videos/count_animals.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
+            <div class="item item-blueshirt">
+            <video poster="" id="blueshirt" autoplay muted loop height="100%">
+                <source src="media/videos/win_race.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
             </div>
         </div>
+        </div>
+    </div>
     </section>
 
     <!-- Abstract Section -->
@@ -386,67 +280,6 @@
         </div>
     </footer>
 
-    <script>
-        (function () {
-            const carousel = document.getElementById('videoCarousel');
-            const track = document.getElementById('carouselTrack');
-            const pages = Array.from(track.children);
-            const prevBtn = document.getElementById('carouselPrev');
-            const nextBtn = document.getElementById('carouselNext');
-            const dots = Array.from(document.querySelectorAll('#carouselDots .dot'));
-            let currentIndex = 0;
-
-            function updateCarousel() {
-                track.style.transform = `translateX(-${currentIndex * 100}%)`;
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === currentIndex);
-                    dot.setAttribute('aria-selected', i === currentIndex);
-                });
-            }
-
-            prevBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + pages.length) % pages.length;
-                updateCarousel();
-            });
-
-            nextBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % pages.length;
-                updateCarousel();
-            });
-
-            dots.forEach((dot, i) => {
-                dot.addEventListener('click', () => {
-                    currentIndex = i;
-                    updateCarousel();
-                });
-            });
-
-            // Autoplay videos on page load
-            pages.forEach(page => {
-                Array.from(page.querySelectorAll('video')).forEach(v => v.play());
-            });
-
-        })();
-    </script>
-
-    <!-- ADD THIS FIX BELOW -->
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const videos = document.querySelectorAll('.carousel-page video');
-        videos.forEach(video => {
-            video.muted = true;       // ensure muted
-            video.playsInline = true; // for iOS
-            video.autoplay = true;
-            video.loop = true;
-            video.preload = 'metadata';
-
-            video.play().catch(err => {
-                console.warn("Video autoplay blocked or not ready yet:", err);
-            });
-        });
-    });
-    </script>
-
-
+    
 </body>
 </html>
